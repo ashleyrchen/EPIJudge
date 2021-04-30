@@ -1,23 +1,68 @@
 from test_framework import generic_test
 from test_framework.test_failure import TestFailure
+import collections 
 
 
+# -----TEXTBOOK SOLUTION, O(1) lookup, insertion, deletion
 class LruCache:
-    def __init__(self, capacity: int) -> None:
-        # TODO - you fill in here.
+    def __init__(self, capacity: int,) -> None:
+        self.capacity = capacity
+        self.dictionary = collections.OrderedDict()
         return
 
     def lookup(self, isbn: int) -> int:
-        # TODO - you fill in here.
-        return 0
+        if isbn in self.dictionary:
+            price = self.dictionary.pop(isbn)
+            self.dictionary[isbn] = price
+            return price
+        return -1
 
     def insert(self, isbn: int, price: int) -> None:
-        # TODO - you fill in here.
+        if isbn in self.dictionary:
+            price = self.dictionary.pop(isbn)
+        elif len(self.dictionary) == self.capacity:
+            self.dictionary.popitem(last=False) # Remove in FIFO order
+        self.dictionary[isbn] = price
         return
 
     def erase(self, isbn: int) -> bool:
-        # TODO - you fill in here.
-        return True
+        if isbn in self.dictionary:
+            self.dictionary.pop(isbn)
+            return True
+        return False
+
+
+# ------MY ORIGINAL SOLUTION, O(1) lookup, O(n) insertion, O(1) deletion 
+# ISBNData = collections.namedtuple('ISBNData', ('Price', 'Time'))
+# class LruCache:
+#     def __init__(self, capacity: int,) -> None:
+#         self.capacity = capacity
+#         self.dictionary = dict()
+#         self.time = 0
+#         return
+
+#     def lookup(self, isbn: int) -> int:
+#         if isbn in dictionary:
+#             self.time += 1
+#             self.dictionary[isbn].Time = self.time
+#             return self.dictionary[isbn].Price
+#         return -1
+
+#     def insert(self, isbn: int, price: int) -> None:
+#         self.time += 1
+#         if isbn in dictionary:
+#             self.dictionary[isbn].Time = self.time
+#         else: 
+#             if len(self.dictionary) == self.capacity:
+#                 erase(min(list(D.items()), key=lambda x: x[1].Time)[0])
+#             self.dictionary[isbn] = ISBNData(price, self.time)
+#         return
+
+#     def erase(self, isbn: int) -> bool:
+#         if isbn in dictionary:
+#             dictionary.__delitem__(isbn)
+#             return True
+#         return False
 
 
 def lru_cache_tester(commands):

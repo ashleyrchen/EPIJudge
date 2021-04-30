@@ -50,6 +50,8 @@ def random_sampling_wrapper(executor, k, A):
 
 
 if __name__ == '__main__':
+
+
     exit(
         generic_test.generic_test_main('offline_sampling.py',
                                        'offline_sampling.tsv',

@@ -38,7 +38,11 @@ def replace_and_remove_wrapper(executor, size, s):
 
 
 if __name__ == '__main__':
-    exit(
-        generic_test.generic_test_main('replace_and_remove.py',
-                                       'replace_and_remove.tsv',
-                                       replace_and_remove_wrapper))
+	A = ['c', 'b', 'b', '', '', '']
+	assert replace_and_remove(3, A) == 1
+	print(A)
+
+    # exit(
+    #     generic_test.generic_test_main('replace_and_remove.py',
+    #                                    'replace_and_remove.tsv',
+    #                                    replace_and_remove_wrapper))

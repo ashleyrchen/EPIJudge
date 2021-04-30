@@ -5,11 +5,70 @@ from list_node import ListNode
 from test_framework import generic_test
 from test_framework.test_failure import TestFailure
 from test_framework.test_utils import enable_executor_hook
+import collections
 
 
 def has_cycle(head: ListNode) -> Optional[ListNode]:
-    # TODO - you fill in here.
+# # -----MY SOLUTION, O(C + F) time, O(1) space, 
+# # where C is the number of nodes to the start of the cycle,
+# # F the number of nodes in the cycle
+#     Visited = collections.namedtuple('Visited', ('VisitedData'))
+#     while not head is None:
+#         if type(head.data) is Visited:
+#             while type(head.data) is Visited:
+#                 head.data, head = head.data.VisitedData, head.next
+#             return head
+#         head.data, head = Visited(head.data), head.next
+#     return head
+
+# # -----NAIVE TEXTBOOK SOLUTION, O(n**2) time, O(1) space,
+# # where n is the number of nodes in the linked list
+#     i = 1
+#     while not head is None:
+#         inner = head
+#         for _ in range(i):
+#             if inner is None:
+#                 break
+#             inner = inner.next
+#         if inner is head:
+#             for _ in range(i-1):
+#                 inner = inner.next
+#             return inner 
+#         head = head.next
+#         i += 1
+#     return head
+
+# -----IMPROVED TEXTBOOK SOLUTION, O(C + F) time, O(1) space,
+# better than my solution because it does not modify the list
+    fast, i = head.next, 1
+    while fast and fast.next:
+        if fast is head:
+            for _ in range(i-1):
+                head = head.next
+            return head 
+        head, fast, i = head.next, fast.next.next, i + 1
     return None
+
+
+def test_has_cycle():
+    B = ListNode(2)
+    A = ListNode(1, B)
+    assert str(has_cycle(A)) == 'None'
+    B.next = A
+    assert str(has_cycle(A)) == str(A)
+
+    D = ListNode(4)
+    C = ListNode(3, D)
+    B = ListNode(2, C)
+    A = ListNode(1, B)
+    assert str(has_cycle(A)) == 'None'
+    D.next = B
+    assert str(has_cycle(A)) == str(B)
+
+    A = ListNode(1)
+    assert str(has_cycle(A)) == 'None'
+    A.next = A 
+    assert str(has_cycle(A)) == str(A)
 
 
 @enable_executor_hook

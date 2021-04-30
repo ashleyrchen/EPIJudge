@@ -7,7 +7,18 @@ from test_framework.test_utils import enable_executor_hook
 
 # Insert new_node after node.
 def insert_after(node: ListNode, new_node: ListNode) -> None:
-    # TODO - you fill in here.
+    # -----MY solution 
+    if node.next:
+        node_next = node.next
+        node.next = new_node
+        new_node.next = node_next 
+    else:
+        node.next = new_node 
+
+    # # ----TEXTBOOK solution 
+    # new_node.next = node.next
+    # node.next = new_node 
+      
     return
 
 
