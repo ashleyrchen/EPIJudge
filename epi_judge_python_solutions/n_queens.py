@@ -29,9 +29,6 @@ def comp(a, b):
 
 
 if __name__ == '__main__':
-	# print(n_queens(6))
-    # print(n_queens(7))
-    print(n_queens(5))
-    # exit(
-    #     generic_test.generic_test_main('n_queens.py', 'n_queens.tsv', n_queens,
-    #                                    comp))
+    exit(
+        generic_test.generic_test_main('n_queens.py', 'n_queens.tsv', n_queens,
+                                       comp))

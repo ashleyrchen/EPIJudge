@@ -18,18 +18,10 @@ def reverse_sublist(L: ListNode, start: int,
         sublist_iter.next, temp.next, sublist_head.next = (temp.next,
                                                            sublist_head.next,
                                                            temp)
-        print(dummy_head.next)
     return dummy_head.next
 
 
 if __name__ == '__main__':
-    E = ListNode(2)
-    D = ListNode(7, E)
-    C = ListNode(5, D)
-    B = ListNode(3, C)
-    A = ListNode(11, B) 
-    print(reverse_sublist(A, 1, 5)) 
-    
-    # exit(
-    #     generic_test.generic_test_main('reverse_sublist.py',
-    #                                    'reverse_sublist.tsv', reverse_sublist))
+    exit(
+        generic_test.generic_test_main('reverse_sublist.py',
+                                       'reverse_sublist.tsv', reverse_sublist))

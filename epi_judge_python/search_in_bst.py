@@ -5,12 +5,8 @@ from test_framework import generic_test
 
 
 def search_bst(tree: BstNode, key: int) -> Optional[BstNode]:
-    if tree:
-        if key < tree.data:
-            return search_bst(tree.left, key)
-        elif key > tree.data:  
-            return search_bst(tree.right, key)
-    return tree # tree is None or tree.data == key
+    # TODO - you fill in here.
+    return None
 
 
 def search_bst_wrapper(tree, key):

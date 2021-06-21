@@ -6,15 +6,10 @@ from test_framework.random_sequence_checker import (
     binomial_coefficient, check_sequence_is_uniformly_random,
     compute_combination_idx, run_func_with_retries)
 from test_framework.test_utils import enable_executor_hook
-import random 
 
 
 def random_sampling(k: int, A: List[int]) -> None:
-# ------MY SOLUTION, O(k) time, O(1) space,  
-    # Invariant: A[0]...A[i] is part of the subset 
-    for i in range(k):
-        r = random.randint(i, len(A)-1)
-        A[r], A[i] = A[i], A[r]
+    # TODO - you fill in here.
     return
 
 
@@ -46,11 +41,6 @@ def random_sampling_wrapper(executor, k, A):
 
 
 if __name__ == '__main__':
-    A = [1, 2, 3, 4]
-    k = 4
-    random_sampling(k, A)
-    print(A)
-
     exit(
         generic_test.generic_test_main('offline_sampling.py',
                                        'offline_sampling.tsv',
